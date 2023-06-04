@@ -1,5 +1,6 @@
 package com.homework27.controller;
 
+
 import com.homework27.model.Employee;
 import com.homework27.service.EmployeeService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,8 +20,8 @@ public class EmployeeController {
     }
 
     @GetMapping("/add")
-    public Employee add(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName) {
-        return employeeService.add(firstName, lastName);
+    public Employee add(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName, int department, double salary) {
+        return employeeService.add(firstName, lastName, department, salary);
     }
     @GetMapping("/remove")
     public Employee remove(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName) {
