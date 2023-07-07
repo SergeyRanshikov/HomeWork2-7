@@ -19,5 +19,4 @@ public class EmployeeStorageIsFullException extends RuntimeException{
     public EmployeeStorageIsFullException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
-
 }
