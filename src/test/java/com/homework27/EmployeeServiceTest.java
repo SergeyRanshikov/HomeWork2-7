@@ -18,16 +18,16 @@ public class EmployeeServiceTest {
 
         @Test
         void testAddEmployee() {
-            Employee employee = out.add("Ivan", "Ivanov", 100_000, 1);
+            Employee employee = out.add("Ivan", "Ivanov", 1, 100000);
             assertEquals("Ivan", employee.getFirstName());
             assertEquals("Ivanov", employee.getLastName());
-            assertEquals(1, employee.getSalary());
-            assertEquals(100000, employee.getDepartment());
+            assertEquals(100000, employee.getSalary());
+            assertEquals(1, employee.getDepartment());
         }
 
         @Test
         void testFindEmployee() {
-            Employee employee1 = out.add("Ivan", "Ivanov", 100_000, 1);
+            Employee employee1 = out.add("Ivan", "Ivanov", 1, 100000);
             Employee employee2 = out.find("Ivan", "Ivanov");
             assertEquals(employee1, employee2);
         }
@@ -39,16 +39,29 @@ public class EmployeeServiceTest {
 
         @Test
         public void testEmployeeAlreadyAddedException() {
-            out.add("Ivan", "Ivanov", 100_000, 1);
+            out.add("Ivan", "Ivanov", 1, 100000);
             assertThrows(EmployeeAlreadyAddedException.class,
-                    () -> out.add("Ivan", "Ivanov", 100_000, 1));
+                    () -> out.add("Ivan", "Ivanov", 1, 100000));
         }
         @Test
         public void testInvalidInputException(){
             assertThrows(invalidInputExcetnion.class,
-                    () -> out.add("Ivan123", "Ivanov", 100_000, 1));
+                    () -> out.add("Ivan123", "Ivanov", 1, 100000));
         }
+    @Test
+    void testRemoveEmployee() {
+        Employee employee = out.add("Ivan", "Ivanov", 1, 100000);
+
+        Employee removedEmployee = out.remove("Ivan", "Ivanov");
+
+        assertEquals("Ivan", removedEmployee.getFirstName());
+        assertEquals("Ivanov", removedEmployee.getLastName());
+        assertEquals(100000, removedEmployee.getSalary());
+        assertEquals(1, removedEmployee.getDepartment());
+
+        assertThrows(EmployeeNotFoundException.class, () -> out.find("Ivan", "Ivanov"));
     }
+}
 
 
 
